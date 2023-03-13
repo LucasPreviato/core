@@ -1,0 +1,9 @@
+: 1678679312:0;
+: 1678679374:0;code ~/.zshrc
+: 1678679444:0;cat /tmp/node-code-zsh/.p10k.zsh
+: 1678679504:0;cat /tmp/node-code-zsh
+: 1678679509:0;cat /tmp
+: 1678679716:0;code ~/.zshrc
+: 1678679750:0;cat /tmp/node-code-zsh/.p10k.zsh
+: 1678679790:0;cp /tmp/node-code-zsh/.p10k.zsh ~/.p10k.zsh
+: 1678679808:0;cat ~/.p10k.zsh

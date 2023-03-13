@@ -42,3 +42,6 @@ lerna-debug.log*
 .docker/postgres
 .docker/mongo
 .docker/redis
+
+.docker/zsh/history/.zsh_history
+.docker/zsh/powerlevel10k/.p10k.zsh

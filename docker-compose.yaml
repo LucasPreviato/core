@@ -9,6 +9,8 @@ services:
       - 3333:3333
     volumes:
      - .:/home/node/backend/core
+     - ./.docker/zsh/powerlevel10k/.p10k.zsh:/home/node/.p10k.zsh:delegated
+     - ./.docker/zsh/history:/home/node/zsh:delegated
     depends_on:
       - postgres-dev
   postgres-dev:
