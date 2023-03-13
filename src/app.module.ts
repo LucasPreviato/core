@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
+import { WinstonModule } from 'nest-winston';
+import * as winston from 'winston';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LaboratoriesModule } from './laboratories/laboratories.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -15,6 +18,7 @@ import { LaboratoriesModule } from './laboratories/laboratories.module';
       ],
     }),
     LaboratoriesModule,
+    PrismaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
