@@ -23,8 +23,10 @@ services:
     volumes:
       - ./.docker/postgres:/home/node/postgresql/data
   postgres-dev-test:
-    container_name: postgres-dev
+    container_name: postgres-dev-test
     image: postgres:alpine
+    profiles:
+      - test
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

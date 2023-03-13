@@ -1,9 +1,11 @@
-FROM node:lts-alpine
+FROM node:lts-slim
 
-RUN apt install bash -y
+RUN apt install bash
+
+USER node
 
 RUN mkdir -p /home/node/backend/core
 
 WORKDIR /home/node/backend/core
 
-CMD ["/.docker/start.sh"]
+CMD [".docker/start.sh"]
