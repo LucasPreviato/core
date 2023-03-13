@@ -1,0 +1,47 @@
+version: '3.9'
+services:
+  core:
+    container_name: core
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3333:3333
+    volumes:
+     - .:/home/node/backend/core
+     - ./.docker/zsh/powerlevel10k/.p10k.zsh:/home/node/.p10k.zsh:delegated
+     - ./.docker/zsh/history:/home/node/zsh:delegated
+    depends_on:
+      - postgres-dev
+  postgres-dev:
+    container_name: postgres-dev
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./.docker/postgres:/home/node/postgresql/data
+  postgres-dev-test:
+    container_name: postgres-dev-test
+    image: postgres:alpine
+    profiles:
+      - test
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    tmpfs:
+      - /var/lib/postgresql/data
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - 5050:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    depends_on:
+      - postgres-dev
+  
