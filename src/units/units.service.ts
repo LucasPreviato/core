@@ -1,11 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable, LoggerService } from '@nestjs/common';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { CreateUnitDto } from './dto/create-unit.dto';
 import { UpdateUnitDto } from './dto/update-unit.dto';
+import { PrismaUnitsRepository } from './repositories/prisma/prisma.units.repository';
 
 @Injectable()
 export class UnitsService {
-  create(createUnitDto: CreateUnitDto) {
-    return 'This action adds a new unit';
+  constructor(
+    @Inject(WINSTON_MODULE_NEST_PROVIDER)
+    private readonly logger: LoggerService,
+    private readonly unitsRepository: PrismaUnitsRepository,
+  ) {}
+
+  async create(createUnitDto: CreateUnitDto) {
+    this.logger.log('Creating a new unit');
+    const newUnit = await this.unitsRepository.create(createUnitDto);
+    this.logger.log({ message: `Unit created: ${newUnit}`, level: 'info' });
+    return newUnit;
   }
 
   findAll() {
