@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-
+import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { CreateUnitDto } from './dto/create-unit.dto';
 import { UpdateUnitDto } from './dto/update-unit.dto';
 import { Unit } from './entities/unit.entity';
@@ -7,10 +7,16 @@ import { PrismaUnitsRepository } from './repositories/prisma/prisma.units.reposi
 
 @Injectable()
 export class UnitsService {
-  constructor(private readonly unitsRepository: PrismaUnitsRepository) {}
+  constructor(
+    @InjectPinoLogger(UnitsService.name)
+    private readonly logger: PinoLogger,
+    private readonly unitsRepository: PrismaUnitsRepository,
+  ) {}
 
   async create(createUnitDto: CreateUnitDto): Promise<Unit> {
+    this.logger.info(`Creating unit: ${createUnitDto.name}`);
     const newUnit = await this.unitsRepository.create(createUnitDto);
+    this.logger.info({ message: `Unit created: ${createUnitDto.name}` });
     return newUnit;
   }
 

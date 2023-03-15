@@ -35,9 +35,6 @@ export class PrismaUnitsRepository {
           connect: { id: laboratoryId },
         },
       },
-      include: {
-        Laboratory: true,
-      },
     });
     return newUnit;
   }

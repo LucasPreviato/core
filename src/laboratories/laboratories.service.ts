@@ -8,8 +8,8 @@ import { PrismaLaboratoriesRepository } from './repositories/prisma/prisma.labor
 @Injectable()
 export class LaboratoriesService {
   constructor(
-    @Inject(WINSTON_MODULE_NEST_PROVIDER)
-    private readonly logger: LoggerService,
+    // @Inject(WINSTON_MODULE_NEST_PROVIDER)
+    // private readonly logger: LoggerService,
     private prismaLaboratoriesRepository: PrismaLaboratoriesRepository,
   ) {}
 
@@ -23,7 +23,7 @@ export class LaboratoriesService {
     phone,
     website,
   }: CreateLaboratoryDto): Promise<Laboratory> {
-    this.logger.log(`Creating laboratory: ${name}`);
+    // this.logger.log(`Creating laboratory: ${name}`);
     const laboratory = {
       name,
       nickname,
@@ -35,21 +35,21 @@ export class LaboratoriesService {
       website,
     };
     await this.prismaLaboratoriesRepository.create(laboratory);
-    this.logger.log({ message: `Laboratory created: ${name}`, level: 'info' });
+    // this.logger.log({ message: `Laboratory created: ${name}`, level: 'info' });
     return laboratory;
   }
 
   async findAll(): Promise<Laboratory[]> {
-    this.logger.log(`Finding all laboratories`);
+    // this.logger.log(`Finding all laboratories`);
     const laboratories = await this.prismaLaboratoriesRepository.findAll();
     return laboratories;
   }
 
   async findOne(id: string): Promise<Laboratory> {
-    this.logger.log(`Finding laboratory: ${id}`);
+    // this.logger.log(`Finding laboratory: ${id}`);
     const laboratory = await this.prismaLaboratoriesRepository.findOne(id);
     if (!laboratory) {
-      this.logger.error(`Laboratory not found: ${id}`);
+      // this.logger.error(`Laboratory not found: ${id}`);
       return null;
     }
     return laboratory;
@@ -74,10 +74,10 @@ export class LaboratoriesService {
   }
 
   async remove(id: string): Promise<void> {
-    this.logger.log(`Removing laboratory: ${id}`);
+    // this.logger.log(`Removing laboratory: ${id}`);
     const laboratory = await this.prismaLaboratoriesRepository.findOne(id);
     if (!laboratory) {
-      this.logger.error(`Laboratory not found: ${id}`);
+      // this.logger.error(`Laboratory not found: ${id}`);
       return null;
     }
     await this.prismaLaboratoriesRepository.remove(id);
