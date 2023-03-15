@@ -1,7 +1,6 @@
 import { Laboratory } from 'src/laboratories/entities/laboratory.entity';
-import { IUnit } from '../interfaces/unit.interface';
 
-export class Unit implements IUnit {
+export interface IUnit {
   id: number;
   name: string;
   address?: string;
