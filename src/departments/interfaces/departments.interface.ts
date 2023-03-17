@@ -1,8 +1,8 @@
-import { IUnit } from 'src/units/interfaces/unit.interface';
+import { Unit } from 'src/units/entities/unit.entity';
 
 export interface IDepartment {
   id: number;
   name: string;
   abbreviation?: string;
-  unit: IUnit;
+  Unit: Unit;
 }
