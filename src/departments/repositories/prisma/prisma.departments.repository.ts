@@ -52,11 +52,10 @@ export class PrismaDepartmentsRepository {
     this.logger.info({ message: 'Department listed' });
     return department;
   }
-  async update({
-    name,
-    abbreviation,
-    unitId,
-  }: UpdateDepartmentDto): Promise<Department> {
+  async update(
+    id: number,
+    { name, abbreviation, unitId }: UpdateDepartmentDto,
+  ): Promise<Department> {
     this.logger.info(`Updating department in database: ${name}`);
     const updatedDepartment = await this.prisma.department.update({
       where: {
