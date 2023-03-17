@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { LaboratoriesModule } from './laboratories/laboratories.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UnitsModule } from './units/units.module';
+import { DepartmentsModule } from './departments/departments.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { UnitsModule } from './units/units.module';
     LaboratoriesModule,
     PrismaModule,
     UnitsModule,
+    DepartmentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
