@@ -12,6 +12,7 @@ datasource db {
 
 generator erd {
   provider = "prisma-erd-generator"
+  output = "../ERD.svg"
 }
 
 model Laboratory {
@@ -34,12 +35,20 @@ model Laboratory {
 model Unit {
   id        Int      @id @default(autoincrement())
   name      String   @unique
+  address   String?
+  number    String?
+  district  String?
+  city      String?
+  state     String?
+  zipCode   String?
+  phone     String?
+  email     String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Employee     Employee[]
   Laboratory   Laboratory   @relation(fields: [laboratoryId], references: [id])
   laboratoryId String
+  Employee     Employee[]
   Department   Department[]
 
   @@map("units")
