@@ -1,4 +1,4 @@
-import { Laboratory } from 'src/laboratories/entities/laboratory.entity';
+import { ILaboratory } from 'src/laboratories/interfaces/laboratory.interface';
 
 export interface IUnit {
   id: number;
@@ -11,5 +11,5 @@ export interface IUnit {
   zipCode?: string;
   phone?: string;
   email?: string;
-  Laboratory?: Laboratory;
+  Laboratory?: ILaboratory;
 }
