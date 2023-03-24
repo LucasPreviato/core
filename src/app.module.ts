@@ -10,6 +10,7 @@ import { LaboratoriesModule } from './laboratories/laboratories.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { UnitsModule } from './units/units.module';
 import { DepartmentsModule } from './departments/departments.module';
+import { JobscategoriesModule } from './jobscategories/jobscategories.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { DepartmentsModule } from './departments/departments.module';
     PrismaModule,
     UnitsModule,
     DepartmentsModule,
+    JobscategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
