@@ -1,9 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { JobscategoriesService } from './jobscategories.service';
 import { CreateJobscategoryDto } from './dto/create-jobscategory.dto';
 import { UpdateJobscategoryDto } from './dto/update-jobscategory.dto';
 
-@Controller('jobscategories')
+@Controller('/api/v1/qualilabs/jobscategories')
 export class JobscategoriesController {
   constructor(private readonly jobscategoriesService: JobscategoriesService) {}
 
@@ -23,7 +31,10 @@ export class JobscategoriesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateJobscategoryDto: UpdateJobscategoryDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateJobscategoryDto: UpdateJobscategoryDto,
+  ) {
     return this.jobscategoriesService.update(+id, updateJobscategoryDto);
   }
 
