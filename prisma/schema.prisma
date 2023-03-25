@@ -129,6 +129,5 @@ model JobCategory {
   updatedAt DateTime   @updatedAt
   JobTitle  JobTitle[]
 
-  @@unique([name])
   @@map("job_categories")
 }
