@@ -12,6 +12,7 @@ import { UnitsModule } from './units/units.module';
 import { DepartmentsModule } from './departments/departments.module';
 import { JobscategoriesModule } from './jobscategories/jobscategories.module';
 import { JobstitlesModule } from './jobstitles/jobstitles.module';
+import { EmployeesModule } from './employees/employees.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { JobstitlesModule } from './jobstitles/jobstitles.module';
     DepartmentsModule,
     JobscategoriesModule,
     JobstitlesModule,
+    EmployeesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
