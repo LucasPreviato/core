@@ -50,12 +50,13 @@ model Unit {
   Employee     Employee[]
   Department   Department[]
 
+  @@unique([name, laboratoryId])
   @@map("units")
 }
 
 model Department {
   id           Int      @id @default(autoincrement())
-  name         String   @unique
+  name         String
   abbreviation String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -64,25 +65,29 @@ model Department {
   Unit     Unit?      @relation(fields: [unitId], references: [id])
   unitId   Int?
 
+  @@unique([name, unitId])
   @@map("departments")
 }
 
 model Employee {
   id               Int                @id @default(autoincrement())
   name             String
-  email            String             @unique
+  email            String
   phone            String?
   status           EmployeeStatus     @default(EXPERIENCE)
+  hiringDate       DateTime?
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   unit             Unit               @relation(fields: [unitId], references: [id])
   unitId           Int
   Department       Department         @relation(fields: [departmentId], references: [id])
   departmentId     Int
-  JobTitle         JobTitle?          @relation(fields: [jobTitleId], references: [id])
-  jobTitleId       Int?
+  JobTitle         JobTitle           @relation(fields: [jobTitleId], references: [id])
+  jobTitleId       Int
   EmployeeDocument EmployeeDocument[]
 
+  @@unique([name, unitId, departmentId])
+  @@unique([email, unitId, departmentId])
   @@map("employees")
 }
 
@@ -113,6 +118,7 @@ model JobTitle {
   JobCategory   JobCategory? @relation(fields: [jobCategoryId], references: [id])
   jobCategoryId Int?
 
+  @@unique([name, jobCategoryId])
   @@map("job_titles")
 }
 
@@ -123,5 +129,6 @@ model JobCategory {
   updatedAt DateTime   @updatedAt
   JobTitle  JobTitle[]
 
+  @@unique([name])
   @@map("job_categories")
 }
