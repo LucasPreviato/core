@@ -1,4 +1,4 @@
-export interface IJobscategory {
+export interface IJobsCategory {
   id: number;
   name: string;
   createdAt: Date;

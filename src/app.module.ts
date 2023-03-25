@@ -11,6 +11,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UnitsModule } from './units/units.module';
 import { DepartmentsModule } from './departments/departments.module';
 import { JobscategoriesModule } from './jobscategories/jobscategories.module';
+import { JobstitlesModule } from './jobstitles/jobstitles.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { JobscategoriesModule } from './jobscategories/jobscategories.module';
     UnitsModule,
     DepartmentsModule,
     JobscategoriesModule,
+    JobstitlesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
